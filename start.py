@@ -3,6 +3,8 @@ from product import Product
 from order import Order
 from ware import Warehouse
 from user import User
+
+warehouse=Warehouse(1,"teen")
 cats=[]
 users=[]
 def start():
@@ -68,6 +70,31 @@ def start():
                 choice=int(input("tanlang:"))
                 if choice==1:
                     print(warehouse.get_cats())
+                elif choice==2:
+                    print(warehouse.get_cats())
+                    id=int(input("sotuv idsini yozing"))
+                    user_id=int(input("oz idsini yozing"))
+                    product_id=int(input("product_id idsini yozing"))
+                    amount=int(input("qancha kerak yozing:"))
+                    buy_user=None
+                    for user in users:
+                        if user_id==user.id:
+                            buy_user=user
+                        else:
+                            print("Id xato user")
+                    for cat in cats:
+                        for c in cat:
+                            for product in c.products:
+                                if product_id==product:
+                                    if product.quantity>amount:
+                                        product.quantity=product.quantity-amount
+                    order=Order(id,user_id,product_id,amount)
+                    buy_user.add_order(order)
+                    print("Mahsulotni sotib oldingiz")
 
 
-# start()
+
+
+
+
+start()
